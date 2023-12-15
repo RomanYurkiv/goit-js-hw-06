@@ -1,15 +1,30 @@
-function slugify(title) {
-    
-    const lowerCaseTitle = title.toLowerCase();
+const customer = {
+  username: "Mango",
+  balance: 24000,
+  discount: 0.1,
+  orders: ["Burger", "Pizza", "Salad"],
 
-    const words = lowerCaseTitle.split(" ");
+  getBalance() {
+    return this.balance;
+  },
+  getDiscount() {
+    return this.discount;
+  },
+  setDiscount(value) {
+    this.discount = value;
+  },
+  getOrders() {
+    return this.orders;
+  },
+  addOrder(cost, order) {
+    this.balance -= cost - cost * this.discount;
+    this.orders.push(order);
+  },
 
-    const slug = words.join("-");
+};
 
-    return slug;
-}
-
-console.log(slugify("Arrays for begginers"));
-console.log(slugify("English for developer"));
-console.log(slugify("Ten secrets of JavaScript"));
-console.log(slugify("How to become a JUNIOR developer in TWO WEEKS"));
+customer.setDiscount(0.15);
+console.log(customer.getDiscount());
+customer.addOrder(5000, "Steak");
+console.log(customer.getBalance());
+console.log(customer.getOrders());
